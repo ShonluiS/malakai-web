@@ -41,70 +41,32 @@
         </div>
     </section>
 
-    <!-- PRODUCTOS -->
+   <!-- SECCIÓN DE PRODUCTOS CON BUSCADOR Y FILTROS -->
     <section id="productos" class="products-section">
         <h2>Nuestros Productos</h2>
-        <div class="products-grid">
 
-            <!-- Producto 1 -->
-            <article class="product-card">
-                <div class="product-image">
-                    <img src="img/collar-turquesa.jpg" alt="Collar Turquesa">
-                </div>
-                <div class="product-info">
-                    <h3>Collar Ajustable Turquesa</h3>
-                    <p class="price">$250.00 MXN</p>
-                    <button class="add-to-cart-btn" data-id="1" data-name="Collar Ajustable Turquesa" data-price="250">
-                        Agregar al carrito
-                    </button>
-                </div>
-            </article>
+        <!-- BARRA DE BÚSQUEDA Y CATEGORÍAS AUTOMÁTICAS -->
+        <div class="catalog-controls">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Buscar por nombre o clave de producto... 🐾">
+            </div>
+            
+            <div class="category-buttons" id="category-buttons">
+                <!-- Los botones de categorías se crean solos desde el archivo de MyBusiness POS -->
+            </div>
+        </div>
 
-            <!-- Producto 2 -->
-            <article class="product-card">
-                <div class="product-image">
-                    <img src="img/correa.jpg" alt="Correa de Paseo">
-                </div>
-                <div class="product-info">
-                    <h3>Correa Reforzada de Paseo</h3>
-                    <p class="price">$320.00 MXN</p>
-                    <button class="add-to-cart-btn" data-id="2" data-name="Correa Reforzada de Paseo" data-price="320">
-                        Agregar al carrito
-                    </button>
-                </div>
-            </article>
+        <!-- GRID DE PRODUCTOS -->
+        <div class="products-grid" id="products-container">
+            <!-- Se llenan automáticamente -->
+        </div>
 
-            <!-- Producto 3 -->
-            <article class="product-card">
-                <div class="product-image">
-                    <img src="img/placa.jpg" alt="Placa Grabada">
-                </div>
-                <div class="product-info">
-                    <h3>Placa de Identificación Grabada</h3>
-                    <p class="price">$150.00 MXN</p>
-                    <button class="add-to-cart-btn" data-id="3" data-name="Placa de Identificación Grabada" data-price="150">
-                        Agregar al carrito
-                    </button>
-                </div>
-            </article>
-
-            <!-- Producto 4 -->
-            <article class="product-card">
-                <div class="product-image">
-                    <img src="img/juguete.jpg" alt="Juguete Mordedera">
-                </div>
-                <div class="product-info">
-                    <h3>Juguete Mordedera Resistente</h3>
-                    <p class="price">$180.00 MXN</p>
-                    <button class="add-to-cart-btn" data-id="4" data-name="Juguete Mordedera Resistente" data-price="180">
-                        Agregar al carrito
-                    </button>
-                </div>
-            </article>
-
+        <!-- MENSAJE DE SIN RESULTADOS -->
+        <div id="no-results" class="no-results" style="display: none;">
+            <p>No encontramos productos que coincidan con tu búsqueda. 🐶</p>
         </div>
     </section>
-
+    
     <!-- PIE DE PÁGINA / CONTACTO -->
     <footer id="contacto">
         <div class="footer-container">
