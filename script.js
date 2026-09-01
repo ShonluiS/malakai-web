@@ -7178,15 +7178,51 @@ const rawProducts = [
 ];
 
 // DETECCIÓN AUTOMÁTICA DE CATEGORÍAS POR PALABRAS CLAVE
+// 1. DETECCIÓN COMPLETA DE CATEGORÍAS POR PALABRAS CLAVE
 function detectCategory(nombre) {
     const name = String(nombre || '').toLowerCase();
-    if (name.includes('arenero')) return 'areneros';
-    if (name.includes('collar')) return 'collares';
-    if (name.includes('correa') || name.includes('bandola')) return 'correas';
-    if (name.includes('placa')) return 'placas';
-    if (name.includes('juguete') || name.includes('balon')) return 'juguetes';
-    if (name.includes('alicata')) return 'herramientas';
-    return 'accesorios';
+
+    // Pecheras
+    if (name.includes('pechera') || name.includes('boris') || name.includes('arnés')) return 'pecheras';
+
+    // Collares (incluye cadenas de castigo)
+    if (name.includes('collar') || name.includes('castigo')) return 'collares';
+
+    // Cardas y Cepillos (incluye peines)
+    if (name.includes('carda') || name.includes('cepillo') || name.includes('peine')) return 'cardas y cepillos';
+
+    // Correas (incluye cadenas de paseo y Cadena 5MM)
+    if (name.includes('correa') || name.includes('cadena')) return 'correas';
+
+    // Juguetes (sonajas, balón, resorte)
+    if (name.includes('juguete') || name.includes('sonaja') || name.includes('balon') || name.includes('balón') || name.includes('resorte')) return 'juguetes';
+
+    // Areneros y camas
+    if (name.includes('arenero') || name.includes('cama')) return 'areneros y camas';
+
+    // Ropa (guayaberas, hawaianas, vestidos, camisas huichol, playeras polo, suéteres, gorras, franelas)
+    if (
+        name.includes('guayabera') || name.includes('hawaiana') || name.includes('vestido') || 
+        name.includes('huichol') || name.includes('polo') || name.includes('sueter') || 
+        name.includes('suéter') || name.includes('gorra') || name.includes('franela') || name.includes('ropa')
+    ) return 'ropa';
+
+    // Transportadoras (mochila, bolsas CH, M, G, bolsa trans)
+    if (name.includes('transportadora') || name.includes('mochila') || name.includes('bolsa ch')|| name.includes('bolsa m')|| name.includes('bolsa g')|| name.includes('bolsa trans')) return 'transportadoras';
+
+    // Comederos y Platos (tazones, bebederos, dispensadores)
+    if (
+        name.includes('comedero') || name.includes('plato') || name.includes('tazon') || 
+        name.includes('tazones') || name.includes('bebedero') || name.includes('dispensador')
+    ) return 'comederos y platos';
+
+    // Comestibles (pata de pollo, carnaza, cola de res, oreja, cachete, sticks)
+    if (
+        name.includes('pata') || name.includes('carnaza') || name.includes('cola') || 
+        name.includes('oreja') || name.includes('cachete') || name.includes('stick') || name.includes('stik')
+    ) return 'comestibles';
+
+    return 'accesorios'; // Si no coincide con ninguna anterior, se va a accesorios
 }
 
 // PROCESAMIENTO DE PRODUCTOS PARA LA TIENDA
@@ -7234,18 +7270,35 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEvents();
 });
 
-// GENERAR BOTONES DE CATEGORÍAS AUTOMÁTICAMENTE SEGÚN TU EXCEL
+// 2. GENERADOR DE BOTONES CON ORDEN DEFINIDO
 function generateDynamicCategories() {
     if (!categoryButtonsContainer) return;
 
-    const categories = ["todos", ...new Set(products.map(p => p.category).filter(c => c))];
-    
+    // Lista ordenada de botones que se mostrarán en la tienda
+    const categoriesOrder = [
+        "todos",
+        "pecheras",
+        "collares",
+        "cardas y cepillos",
+        "correas",
+        "juguetes",
+        "areneros y camas",
+        "ropa",
+        "transportadoras",
+        "comederos y platos",
+        "comestibles",
+        "accesorios"
+    ];
+
     categoryButtonsContainer.innerHTML = '';
-    categories.forEach(cat => {
+    
+    categoriesOrder.forEach(cat => {
         const btn = document.createElement('button');
         btn.classList.add('filter-btn');
         if (cat === 'todos') btn.classList.add('active');
         btn.dataset.category = cat;
+        
+        // Pone la primera letra en mayúscula para que se vea limpio
         btn.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
         
         btn.addEventListener('click', () => {
