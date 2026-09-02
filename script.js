@@ -7225,19 +7225,35 @@ function detectCategory(nombre) {
     return 'accesorios'; // Si no coincide con ninguna anterior, se va a accesorios
 }
 
-// PROCESAMIENTO DE PRODUCTOS PARA LA TIENDA
+// CONFIGURACIÓN DE MAYOREO
+const WHOLESALE_CODE = "MALAKAI2026";
+let isWholesaleActive = false;
+
+// PROCESAMIENTO DE PRODUCTOS
 const products = rawProducts.map((item, index) => {
     const clave = item.Clave ? String(item.Clave).trim() : String(index + 1);
     const categoriaDefinida = item.Categoría && String(item.Categoría).trim() !== "" 
         ? String(item.Categoría).trim() 
         : detectCategory(item.Nombre);
 
+    // Extrae únicamente el número del texto "MEDUDEO:55:+" de MyBusiness POS
+    let retailPrice = 0;
+    if (item["Precios Adicionales"]) {
+        const match = String(item["Precios Adicionales"]).match(/(\d+(\.\d+)?)/);
+        if (match) retailPrice = parseFloat(match[0]);
+    }
+
+    const wholesalePrice = parseFloat(item.Precio) || 0;
+    if (!retailPrice || retailPrice === 0) retailPrice = wholesalePrice;
+
     return {
         id: clave,
         name: item.Nombre || "Producto sin nombre",
-        price: parseFloat(item.Precio) || 0,
+        wholesalePrice: wholesalePrice,
+        retailPrice: retailPrice,
+        price: retailPrice, // Inicia con precio público por defecto
         category: categoriaDefinida.toLowerCase(),
-        image: `img/${clave}.png` // Busca la foto por su Clave en la carpeta img
+        image: `img/${clave}.png`
     };
 });
 
@@ -7351,19 +7367,17 @@ function renderProducts() {
     filtered.forEach(product => {
         const card = document.createElement('article');
         card.classList.add('product-card');
-        card.innerHTML = `
-            <div class="product-image">
-                <img src="${product.image}" alt="${product.name}" onerror="this.src='img/logo.png'">
-            </div>
-            <div class="product-info">
-                <span style="font-size:0.75rem; color:#888;">Clave: ${product.id}</span>
-                <h3>${product.name}</h3>
-                <p class="price">$${product.price.toFixed(2)} MXN</p>
-                <button class="add-to-cart-btn" onclick="addToCart('${product.id}')">
-                    Agregar al carrito
-                </button>
-            </div>
-        `;
+       card.innerHTML = `
+    <div class="product-image">
+        <img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='img/logo.png';" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
+    </div>
+    <div class="product-info">
+        <span style="font-size:0.75rem; color:#888;">Clave: ${product.id}</span>
+        <h3>${product.name}</h3>
+        <p class="price">$${product.price.toFixed(2)} MXN ${isWholesaleActive ? '<span style="font-size: 0.75rem; color: #2e7d32; font-weight: bold; margin-left: 4px;">(Mayoreo)</span>' : ''}</p>
+        <button class="add-to-cart-btn" onclick="addToCart('${product.id}')">Agregar al carrito</button>
+    </div>
+`;
         productsContainer.appendChild(card);
     });
 }
@@ -7474,3 +7488,94 @@ function showToast() {
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 2000);
 }
+// ACTIVACIÓN DE PRECIOS MAYORISTAS
+document.addEventListener('DOMContentLoaded', () => {
+    const applyBtn = document.getElementById('apply-wholesale-btn');
+    const codeInput = document.getElementById('wholesale-code-input');
+    const statusMsg = document.getElementById('wholesale-status');
+
+    if (applyBtn) {
+        applyBtn.addEventListener('click', () => {
+            const codeEntered = codeInput.value.trim().toUpperCase();
+            
+            if (codeEntered === WHOLESALE_CODE) {
+                isWholesaleActive = true;
+                
+                // 1. Cambia el precio activo de todos los productos de la tienda
+                products.forEach(p => p.price = p.wholesalePrice); 
+
+                // 2. Si ya hay productos agregados al carrito, actualiza su precio
+                if (typeof cart !== 'undefined' && Array.isArray(cart)) {
+                    cart.forEach(item => {
+                        const prod = products.find(p => p.id === item.id);
+                        if (prod) item.price = prod.wholesalePrice;
+                    });
+                }
+
+                statusMsg.textContent = "¡Precios de mayoreo activados! 🐾";
+                statusMsg.style.color = "#2e7d32";
+
+                // 3. Vuelve a dibujar los productos y el carrito con los nuevos precios
+                if (typeof renderProducts === 'function') renderProducts();
+                if (typeof updateCartUI === 'function') updateCartUI();
+                if (typeof saveCartToStorage === 'function') saveCartToStorage();
+
+            } else {
+                statusMsg.textContent = "Clave incorrecta.";
+                statusMsg.style.color = "#d32f2f";
+            }
+        });
+    }
+});
+// FUNCIONES PARA EL MODAL DE PRODUCTO
+let currentModalProductId = null;
+
+function openProductModal(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    currentModalProductId = productId;
+
+    // Asigna los datos actuales al modal
+    document.getElementById('modal-img').src = product.image;
+    document.getElementById('modal-title').textContent = product.name;
+    document.getElementById('modal-category').textContent = `Categoría: ${product.category}`;
+    
+    // Muestra el precio dinámico (Menudeo o Mayoreo)
+    const priceText = `$${product.price.toFixed(2)} MXN ${isWholesaleActive ? '(Mayoreo)' : ''}`;
+    document.getElementById('modal-price').textContent = priceText;
+
+    // Muestra la ventana emergente
+    const modal = document.getElementById('product-modal');
+    modal.style.display = 'flex';
+}
+
+// CERRAR MODAL Y AGREGAR AL CARRITO
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('product-modal');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const addBtn = document.getElementById('modal-add-btn');
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    }
+
+    // Cerrar si hacen clic fuera del cuadro blanco
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Acción de agregar desde el modal
+    if (addBtn) {
+        addBtn.addEventListener('click', () => {
+            if (currentModalProductId) {
+                addToCart(currentModalProductId); // Utiliza tu función existente del carrito
+                modal.style.display = 'none';
+            }
+        });
+    }
+});
