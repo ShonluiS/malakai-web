@@ -7226,7 +7226,7 @@ function detectCategory(nombre) {
 }
 
 // CONFIGURACIÓN DE MAYOREO
-const WHOLESALE_CODE = "MALAKAI2026";
+const WHOLESALE_CODE = "1234";
 let isWholesaleActive = false;
 
 // PROCESAMIENTO DE PRODUCTOS
