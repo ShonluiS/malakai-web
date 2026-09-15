@@ -7371,7 +7371,7 @@ card.classList.add('product-card');
 
 card.innerHTML = `
     <div class="product-image" style="position: relative; ${isOutOfStock ? 'opacity: 0.4; filter: grayscale(100%);' : ''}">
-        <img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='img/logo.jpg';" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
+        <img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='img/logo.png';" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
         ${isOutOfStock ? '<span style="position: absolute; top: 10px; left: 10px; background: #d32f2f; color: #fff; font-weight: bold; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem;">AGOTADO</span>' : ''}
     </div>
     <div class="product-info">
