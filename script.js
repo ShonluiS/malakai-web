@@ -5979,9 +5979,9 @@ const rawProducts = [
     "Nombre": "SUETER #0",
     "Cantidad": 0,
     "Costo": 13,
-    "Precio": 17,
+    "Precio": 19,
     "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :30:+",
+    "Precios Adicionales": "MENUDEO :35:+",
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 13,
@@ -7365,17 +7365,31 @@ function renderProducts() {
     if (noResultsMessage) noResultsMessage.style.display = 'none';
 
     filtered.forEach(product => {
-        const card = document.createElement('article');
-        card.classList.add('product-card');
-       card.innerHTML = `
-    <div class="product-image">
-        <img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='img/logo.png';" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
+      const isOutOfStock = outOfStockIds.includes(product.id);
+const card = document.createElement('article');
+card.classList.add('product-card');
+
+card.innerHTML = `
+    <div class="product-image" style="position: relative; ${isOutOfStock ? 'opacity: 0.4; filter: grayscale(100%);' : ''}">
+        <img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='img/logo.jpg';" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
+        ${isOutOfStock ? '<span style="position: absolute; top: 10px; left: 10px; background: #d32f2f; color: #fff; font-weight: bold; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem;">AGOTADO</span>' : ''}
     </div>
     <div class="product-info">
         <span style="font-size:0.75rem; color:#888;">Clave: ${product.id}</span>
         <h3>${product.name}</h3>
         <p class="price">$${product.price.toFixed(2)} MXN ${isWholesaleActive ? '<span style="font-size: 0.75rem; color: #2e7d32; font-weight: bold; margin-left: 4px;">(Mayoreo)</span>' : ''}</p>
-        <button class="add-to-cart-btn" onclick="addToCart('${product.id}')">Agregar al carrito</button>
+        
+        <button class="add-to-cart-btn" ${isOutOfStock ? 'disabled style="background: #ccc; cursor: not-allowed;"' : `onclick="addToCart('${product.id}')"`}>
+            ${isOutOfStock ? 'Agotado' : 'Agregar al carrito'}
+        </button>
+
+        ${isAdmin ? `
+            <div style="margin-top: 10px; background: #fff3cd; padding: 6px; border-radius: 4px; border: 1px solid #ffeeba; text-align: center;">
+                <label style="font-size: 0.8rem; font-weight: bold; cursor: pointer; color: #856404;">
+                    <input type="checkbox" ${isOutOfStock ? 'checked' : ''} onchange="toggleStock('${product.id}')"> Ocultar / Marcar Agotado
+                </label>
+            </div>
+        ` : ''}
     </div>
 `;
         productsContainer.appendChild(card);
@@ -7579,3 +7593,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// CONTROL DE ADMINISTRADOR Y AGOTADOS
+let isAdmin = false;
+let outOfStockIds = JSON.parse(localStorage.getItem('outOfStockProducts')) || [];
+
+function openAdminPrompt() {
+    const password = prompt("Modo Administrador - Ingresa la clave:");
+    if (password === "MALAKAI2026") {
+        isAdmin = !isAdmin;
+        alert(isAdmin ? "Modo Edición ACTIVADO 🛠️" : "Modo Edición DESACTIVADO 🔒");
+        renderProducts();
+    } else if (password !== null) {
+        alert("Contraseña incorrecta.");
+    }
+}
+
+// Atajo de teclado: Ctrl + Shift + A
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+        e.preventDefault();
+        openAdminPrompt();
+    }
+});
+
+function toggleStock(productId) {
+    const index = outOfStockIds.indexOf(productId);
+    if (index > -1) {
+        outOfStockIds.splice(index, 1);
+    } else {
+        outOfStockIds.push(productId);
+    }
+    localStorage.setItem('outOfStockProducts', JSON.stringify(outOfStockIds));
+    renderProducts();
+}
