@@ -393,3 +393,58 @@ footer {
     color: #64748b;
     font-size: 1.1rem;
 }
+
+.product-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* EFECTO ELEGANTE EN EL MENÚ DE NAVEGACIÓN */
+nav a {
+    position: relative;
+    text-decoration: none;
+    color: #333; /* Ajusta según el color de tu texto */
+    padding-bottom: 4px;
+    transition: color 0.3s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #000; /* Color de la línea (puedes poner el de tu marca) */
+    transition: width 0.3s ease-in-out;
+}
+
+nav a:hover {
+    color: #000;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* ESTILO PARA EL ICONO DEL BUSCADOR */
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    color: #888;
+    pointer-events: none;
+}
+
+.search-box input {
+    padding-left: 36px; /* Espacio para que el texto no tape la lupa */
+}

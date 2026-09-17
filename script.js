@@ -5994,9 +5994,9 @@ const rawProducts = [
     "Nombre": "SUETER #1",
     "Cantidad": 0,
     "Costo": 14,
-    "Precio": 20,
+    "Precio": 22,
     "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :30:+",
+    "Precios Adicionales": "MENUDEO :35:+",
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 14,
@@ -6009,9 +6009,9 @@ const rawProducts = [
     "Nombre": "SUETER #10",
     "Cantidad": 1,
     "Costo": 85,
-    "Precio": 115,
+    "Precio": 120,
     "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :150:+",
+    "Precios Adicionales": "MENUDEO :160:+",
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 85,
@@ -6024,9 +6024,9 @@ const rawProducts = [
     "Nombre": "SUETER #2",
     "Cantidad": 0,
     "Costo": 17,
-    "Precio": 23,
+    "Precio": 25,
     "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :35:+",
+    "Precios Adicionales": "MENUDEO :40:+",
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 17,
@@ -6039,9 +6039,9 @@ const rawProducts = [
     "Nombre": "SUETER #3",
     "Cantidad": 0,
     "Costo": 20,
-    "Precio": 26,
+    "Precio": 29,
     "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :40:+",
+    "Precios Adicionales": "MENUDEO :45:+",
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 20,
@@ -6054,7 +6054,7 @@ const rawProducts = [
     "Nombre": "SUETER #4",
     "Cantidad": 0,
     "Costo": 22.5,
-    "Precio": 30,
+    "Precio": 33,
     "Cantidad Mínima": 0,
     "Precios Adicionales": "MENUDEO :50:+",
     "Información Adicional": "",
@@ -6069,7 +6069,7 @@ const rawProducts = [
     "Nombre": "SUETER #5",
     "Cantidad": 0,
     "Costo": 28.5,
-    "Precio": 38,
+    "Precio": 41,
     "Cantidad Mínima": 0,
     "Precios Adicionales": "MENUDEO :60:+",
     "Información Adicional": "",
@@ -6084,9 +6084,9 @@ const rawProducts = [
     "Nombre": "SUETER #6",
     "Cantidad": 0,
     "Costo": 37.5,
-    "Precio": 49,
+    "Precio": 52,
     "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :70:+",
+    "Precios Adicionales": "MENUDEO :75:+",
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 37.5,
@@ -6099,9 +6099,9 @@ const rawProducts = [
     "Nombre": "SUETER #7",
     "Cantidad": 1,
     "Costo": 47,
-    "Precio": 62,
+    "Precio": 65,
     "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :90:+",
+    "Precios Adicionales": "MENUDEO :95:+",
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 47,
@@ -6114,9 +6114,9 @@ const rawProducts = [
     "Nombre": "SUETER #8",
     "Cantidad": 0,
     "Costo": 52,
-    "Precio": 80,
+    "Precio": 85,
     "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :110:+",
+    "Precios Adicionales": "MENUDEO :115:+",
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 52,
@@ -6129,9 +6129,9 @@ const rawProducts = [
     "Nombre": "SUETER #9",
     "Cantidad": 0,
     "Costo": 62,
-    "Precio": 95,
+    "Precio": 100,
     "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :130:+",
+    "Precios Adicionales": "MENUDEO :140:+",
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 62,
@@ -7402,21 +7402,37 @@ function toggleCart() {
     if (cartOverlay) cartOverlay.classList.toggle('active');
 }
 
-function addToCart(id) {
+function addToCart(id, event) {
     const product = products.find(p => p.id === id);
     if (!product) return;
 
     const existingItem = cart.find(item => item.id === id);
-
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
-        cart.push({ id: product.id, name: product.name, price: product.price, quantity: 1 });
+        cart.push({ ...product, quantity: 1 });
     }
 
     updateCartUI();
-    saveCartToStorage();
-    showToast();
+    if (typeof saveCartToStorage === 'function') saveCartToStorage();
+    if (typeof showToast === 'function') showToast();
+
+    // Feedback visual en el botón
+    const btn = event?.target || (window.event ? window.event.target : null);
+    if (btn && btn.tagName === 'BUTTON') {
+        const originalText = btn.innerHTML;
+        const originalBg = btn.style.backgroundColor;
+        
+        btn.innerHTML = '¡Agregado! ✓';
+        btn.style.backgroundColor = '#2e7d32';
+        btn.style.color = '#ffffff';
+
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.style.backgroundColor = originalBg;
+            btn.style.color = '';
+        }, 1200);
+    }
 }
 
 function updateQuantity(id, change) {

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Malakai | Accesorios para Mascotas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,8 +24,8 @@
 
             <!-- Botón del Carrito con Contador -->
             <button class="cart-btn" id="open-cart-btn">
-                🛒 <span id="cart-count">0</span>
-            </button>
+    <i class="fa-solid fa-cart-shopping"></i> <span id="cart-count">0</span>
+    </button>
         </div>
     </header>
 
@@ -46,10 +47,12 @@
         <h2>Nuestros Productos</h2>
 
         <!-- BARRA DE BÚSQUEDA Y CATEGORÍAS AUTOMÁTICAS -->
-        <div class="catalog-controls">
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="Buscar por nombre o clave de producto... 🐾">
-            </div>
+<div class="catalog-controls">
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="search-input" placeholder="Buscar por nombre o clave de producto...">
+    </div>
+</div>
             
             <div class="category-buttons" id="category-buttons">
                 <!-- Los botones de categorías se crean solos desde el archivo de MyBusiness POS -->
