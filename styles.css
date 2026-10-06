@@ -367,7 +367,7 @@ footer {
 }
 
 .search-box input:focus {
-    border-color: #2e7d32;
+    border-color: #006adb;
     box-shadow: 0 0 8px rgba(46, 125, 50, 0.2);
 }
 
@@ -390,9 +390,9 @@ footer {
 }
 
 .filter-btn:hover, .filter-btn.active {
-    background-color: #2e7d32;
+    background-color: #006adb;
     color: #ffffff;
-    border-color: #2e7d32;
+    border-color: #00249b;
 }
 
 .no-results {
