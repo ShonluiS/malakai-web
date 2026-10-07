@@ -457,7 +457,7 @@ nav a:hover::after {
     padding-left: 36px; /* Espacio para que el texto no tape la lupa */
 }
 
-/* --- CORRECCIÓN RESPONSIVA DEL CARRUSEL (DESK Y MÓVIL) --- */
+/* --- ESTILOS GENERALES (COMPUTADORA MANTIENE SU DISEÑO EXACTO) --- */
 .hero-image {
     position: relative;
     width: 100%;
@@ -470,7 +470,6 @@ nav a:hover::after {
     position: relative;
     width: 100%;
     max-width: 450px;
-    /* Usamos aspect-ratio para mantener la proporción exacta del cuadro */
     aspect-ratio: 4 / 3;
     overflow: hidden;
     border-radius: 12px;
@@ -490,7 +489,6 @@ nav a:hover::after {
     object-fit: contain;
 }
 
-/* Puntitos dentro del recuadro de la imagen */
 .carousel-dots {
     position: absolute;
     bottom: 10px;
@@ -516,16 +514,22 @@ nav a:hover::after {
     border-radius: 10px;
 }
 
-/* AJUSTE EXCLUSIVO PARA CELULARES */
+/* --- AJUSTE EXCLUSIVO PARA CELULARES --- */
 @media (max-width: 768px) {
     .hero {
-        flex-direction: column; /* Pone el texto arriba y la imagen abajo en celulares */
+        display: flex !important;
+        flex-direction: column-reverse !important; /* Mueve la foto arriba y el texto abajo */
+        align-items: center !important;
         text-align: center;
         gap: 20px;
     }
 
+    .hero-image {
+        width: 100%;
+    }
+
     .hero-carousel-container {
-        max-width: 100%; /* Aprovecha bien el ancho de la pantalla del celular */
-        aspect-ratio: 4 / 3; /* Mantiene la forma del cuadro sin alargarse */
+        max-width: 100% !important; /* La foto abarca de lado a lado en el cel */
+        aspect-ratio: 16 / 9; /* Formato panorámico ideal para celulares */
     }
 }
