@@ -456,3 +456,61 @@ nav a:hover::after {
 .search-box input {
     padding-left: 36px; /* Espacio para que el texto no tape la lupa */
 }
+
+/* --- CORRECCIÓN DEFINITIVA DEL CARRUSEL Y PUNTITOS --- */
+.hero-image {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 450px; /* Ancho fijo máximo de las imágenes */
+    height: 320px;    /* Altura fija para evitar que se abra el hueco */
+    overflow: hidden; /* Oculta todo lo que esté fuera del marco */
+    border-radius: 12px;
+}
+
+.hero-carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.hero-slide {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    object-fit: contain; /* Ajusta la imagen dentro del recuadro sin deformarla */
+}
+
+/* Puntitos dentro del recuadro de la imagen */
+.carousel-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background-color: #0088cc;
+    width: 20px;
+    border-radius: 10px;
+}

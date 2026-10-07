@@ -281,7 +281,7 @@ const rawProducts = [
     "Costo": 19.14,
     "Precio": 30,
     "Cantidad Mínima": 0,
-    "Precios Adicionales": "PROMO 12pz:28:+#MENUDEO :40:+",
+    "Precios Adicionales": "MENUDEO :40:+",
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 19.14,
@@ -1200,21 +1200,6 @@ const rawProducts = [
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 40,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "CAL-SA",
-    "Unidad": "PIEZA",
-    "Nombre": "CALSA GALLO",
-    "Cantidad": 1,
-    "Costo": 14,
-    "Precio": 18,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 14,
     "": "",
     "Vincular (Costo / Precio)": ""
   },
@@ -3435,51 +3420,6 @@ const rawProducts = [
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 0,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "DES-CH",
-    "Unidad": "PIEZA",
-    "Nombre": "DESTORCEDOR CH",
-    "Cantidad": 1,
-    "Costo": 4.7,
-    "Precio": 8,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :12:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 4.7,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "DES-G",
-    "Unidad": "PIEZA",
-    "Nombre": "DESTORCEDOR G",
-    "Cantidad": 1,
-    "Costo": 8.2,
-    "Precio": 12,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :20:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 8.2,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "DES-M",
-    "Unidad": "PIEZA",
-    "Nombre": "DESTORCEDOR M",
-    "Cantidad": 1,
-    "Costo": 5.8,
-    "Precio": 9,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :15:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 5.8,
     "": "",
     "Vincular (Costo / Precio)": ""
   },
@@ -7643,3 +7583,53 @@ function toggleStock(productId) {
     localStorage.setItem('outOfStockProducts', JSON.stringify(outOfStockIds));
     renderProducts();
 }
+
+// --- LÓGICA DE DESLIZAMIENTO CON PUNTITOS INDICADORES ---
+document.addEventListener("DOMContentLoaded", function() {
+    const track = document.querySelector(".hero-carousel-track");
+    const slides = document.querySelectorAll(".hero-slide");
+    const dotsContainer = document.querySelector(".carousel-dots");
+    let currentIndex = 0;
+
+    if (!track || slides.length === 0) return;
+
+    // Crear los puntitos dinámicamente según el número de imágenes
+    slides.forEach((_, index) => {
+        const dot = document.createElement("span");
+        dot.classList.add("dot");
+        if (index === 0) dot.classList.add("active");
+        
+        // Permite hacer clic en el punto para ir a esa imagen
+        dot.addEventListener("click", () => {
+            goToSlide(index);
+        });
+
+        dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll(".dot");
+
+    function updateDots() {
+        dots.forEach((dot, index) => {
+            if (index === currentIndex) {
+                dot.classList.add("active");
+            } else {
+                dot.classList.remove("active");
+            }
+        });
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updateDots();
+    }
+
+    function moveToNextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        goToSlide(currentIndex);
+    }
+
+    // Cambia de imagen automáticamente cada 4 segundos
+    setInterval(moveToNextSlide, 4000);
+});
