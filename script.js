@@ -2554,7 +2554,7 @@ const rawProducts = [
     "Vincular (Costo / Precio)": ""
   },
   {
-    "Clave": "COL-1/2",
+    "Clave": "COL-LU",
     "Unidad": "PIEZA",
     "Nombre": "COLLAR LUJO",
     "Cantidad": 1,
@@ -5104,24 +5104,9 @@ const rawProducts = [
     "Vincular (Costo / Precio)": ""
   },
   {
-    "Clave": "PECA-CH",
-    "Unidad": "PIEZA",
-    "Nombre": "PELOTA CARNAZA CH",
-    "Cantidad": 0,
-    "Costo": 15,
-    "Precio": 24,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :30:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 15,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
     "Clave": "PECA-G",
     "Unidad": "PIEZA",
-    "Nombre": "PELOTA CARNAZA G",
+    "Nombre": "PELOTA CARNAZA",
     "Cantidad": 0,
     "Costo": 18,
     "Precio": 30,
