@@ -7290,7 +7290,7 @@ function renderProducts() {
     if (noResultsMessage) noResultsMessage.style.display = 'none';
 
     filtered.forEach(product => {
-      const isOutOfStock = !!product.isOutOfStock;
+      const isOutOfStock = outOfStockIds.includes(product.id);
 const card = document.createElement('article');
 card.classList.add('product-card');
 
@@ -7635,19 +7635,25 @@ document.addEventListener("DOMContentLoaded", function() {
     setInterval(moveToNextSlide, 4000);
 });
 
-// Escuchar cambios de estado en tiempo real desde Firebase
+// Escuchador en tiempo real optimizado
 database.ref('outOfStock').on('value', (snapshot) => {
     const outOfStockData = snapshot.val() || {};
+    let huboCambio = false;
 
-    // Sincronizamos la propiedad isOutOfStock de cada producto
     products.forEach(product => {
-        // Usamos la clave/id del producto
         const key = product.id || product.clave;
+        const nuevoEstado = Boolean(outOfStockData[key]);
         
-        // Actualizamos la variable EXACTA que usa tu HTML
-        product.isOutOfStock = !!outOfStockData[key];
+        // Solo marcamos cambio si el estado realmente es distinto al actual
+        if (product.isOutOfStock !== nuevoEstado) {
+            product.isOutOfStock = nuevoEstado;
+            huboCambio = true;
+        }
     });
 
-    // Volvemos a pintar la interfaz
-    renderProducts();
+    // Solo volvemos a pintar los productos si hubo algún cambio de estado
+    if (huboCambio || !window.productosPintados) {
+        window.productosPintados = true;
+        renderProducts();
+    }
 });
