@@ -7639,11 +7639,15 @@ document.addEventListener("DOMContentLoaded", function() {
 database.ref('outOfStock').on('value', (snapshot) => {
     const outOfStockData = snapshot.val() || {};
 
-    // Actualizar la propiedad isOutOfStock de cada producto
+    // Sincronizamos la propiedad isOutOfStock de cada producto
     products.forEach(product => {
-        product.isOutOfStock = !!outOfStockData[product.id];
+        // Usamos la clave/id del producto
+        const key = product.id || product.clave;
+        
+        // Actualizamos la variable EXACTA que usa tu HTML
+        product.isOutOfStock = !!outOfStockData[key];
     });
 
-    // Volver a renderizar los productos en pantalla
+    // Volvemos a pintar la interfaz
     renderProducts();
 });
