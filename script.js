@@ -7559,20 +7559,30 @@ document.addEventListener('keydown', (e) => {
 });
 
 function toggleStock(productId) {
-    // 1. Buscamos el producto probando id o clave
+    // 1. Buscamos el producto en la lista local por id o clave
     const product = products.find(p => String(p.id) === String(productId) || String(p.clave) === String(productId));
     
-    // Si no encuentra el objeto en el arreglo local, usamos directamente el productId recibido
-    const estadoActual = product ? !!product.isOutOfStock : false;
-    const nuevoEstado = !estadoActual;
+    if (!product) {
+        console.error("No se encontró el producto con ID:", productId);
+        return;
+    }
 
-    // 2. Guardamos en Firebase
-    database.ref('outOfStock/' + productId).set(nuevoEstado)
+    // 2. Invertimos su estado actual
+    product.isOutOfStock = !product.isOutOfStock;
+
+    // 3. Volvemos a pintar los productos en pantalla DE INMEDIATO
+    renderProducts();
+
+    // 4. Guardamos el cambio en Firebase para sincronizar a los demás
+    database.ref('outOfStock/' + productId).set(product.isOutOfStock)
         .then(() => {
-            console.log("Guardado en Firebase exitosamente:", productId, nuevoEstado);
+            console.log("Sincronizado en Firebase:", productId, product.isOutOfStock);
         })
         .catch((error) => {
-            console.error("Error guardando en Firebase:", error);
+            console.error("Error al guardar en Firebase:", error);
+            // Si Firebase falla por permisos, revertimos el cambio en pantalla
+            product.isOutOfStock = !product.isOutOfStock;
+            renderProducts();
         });
 }
 // --- LÓGICA DE DESLIZAMIENTO CON PUNTITOS INDICADORES ---
