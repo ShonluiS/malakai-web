@@ -138,6 +138,26 @@
     <!-- NOTIFICACIÓN TIPO TOAST AL AGREGAR UN PRODUCTO (FUNCIÓN EXTRA) -->
     <div id="toast" class="toast">¡Producto agregado al carrito! 🐾</div>
 
+   <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+
+<script>
+  // Configuración de Firebase para Malakai
+  const firebaseConfig = {
+    apiKey: "AIzaSyC9trDqg8OH42451D0UsxFGi9pDfGwuwik",
+    authDomain: "malakai-39db2.firebaseapp.com",
+    databaseURL: "https://malakai-39db2-default-rtdb.firebaseio.com",
+    projectId: "malakai-39db2",
+    storageBucket: "malakai-39db2.firebasestorage.app",
+    messagingSenderId: "671437427822",
+    appId: "1:671437427822:web:1b0ca8dfdaca56624f427f"
+  };
+
+  // Inicializar Firebase
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+</script>
     <script src="script.js"></script>
    
     <!-- VENTANA EMERGENTE / MODAL DE PRODUCTO -->

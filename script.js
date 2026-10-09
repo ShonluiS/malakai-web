@@ -7559,16 +7559,22 @@ document.addEventListener('keydown', (e) => {
 });
 
 function toggleStock(productId) {
-    const index = outOfStockIds.indexOf(productId);
-    if (index > -1) {
-        outOfStockIds.splice(index, 1);
-    } else {
-        outOfStockIds.push(productId);
-    }
-    localStorage.setItem('outOfStockProducts', JSON.stringify(outOfStockIds));
-    renderProducts();
-}
+    // Buscar el producto en la lista local
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
 
+    // Invertir el estado (si estaba disponible pasa a agotado y viceversa)
+    const nuevoEstado = !product.isOutOfStock;
+
+    // Guardar el nuevo estado globalmente en Firebase
+    database.ref('outOfStock/' + productId).set(nuevoEstado)
+        .then(() => {
+            console.log("Estado actualizado en Firebase para todos los usuarios");
+        })
+        .catch((error) => {
+            console.error("Error al guardar en Firebase:", error);
+        });
+}
 // --- LÓGICA DE DESLIZAMIENTO CON PUNTITOS INDICADORES ---
 document.addEventListener("DOMContentLoaded", function() {
     const track = document.querySelector(".hero-carousel-track");
@@ -7617,4 +7623,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Cambia de imagen automáticamente cada 4 segundos
     setInterval(moveToNextSlide, 4000);
+});
+
+// Escuchar cambios de estado en tiempo real desde Firebase
+database.ref('outOfStock').on('value', (snapshot) => {
+    const outOfStockData = snapshot.val() || {};
+
+    // Actualizar la propiedad isOutOfStock de cada producto
+    products.forEach(product => {
+        product.isOutOfStock = !!outOfStockData[product.id];
+    });
+
+    // Volver a renderizar los productos en pantalla
+    renderProducts();
 });
