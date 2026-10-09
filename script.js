@@ -7290,7 +7290,7 @@ function renderProducts() {
     if (noResultsMessage) noResultsMessage.style.display = 'none';
 
     filtered.forEach(product => {
-      const isOutOfStock = outOfStockIds.includes(product.id);
+      const isOutOfStock = !!product.isOutOfStock;
 const card = document.createElement('article');
 card.classList.add('product-card');
 
