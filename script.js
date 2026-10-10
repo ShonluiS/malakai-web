@@ -7296,7 +7296,7 @@ card.classList.add('product-card');
 
 card.innerHTML = `
     <div class="product-image" style="position: relative; ${isOutOfStock ? 'opacity: 0.4; filter: grayscale(100%);' : ''}">
-        <img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='img/logo.png';" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
+        <img src="${product.image}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='img/logo.png';" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
         ${isOutOfStock ? '<span style="position: absolute; top: 10px; left: 10px; background: #d32f2f; color: #fff; font-weight: bold; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem;">AGOTADO</span>' : ''}
     </div>
     <div class="product-info">
@@ -7635,25 +7635,19 @@ document.addEventListener("DOMContentLoaded", function() {
     setInterval(moveToNextSlide, 4000);
 });
 
-// Escuchador en tiempo real optimizado
+// Escuchar cambios de estado en tiempo real desde Firebase
 database.ref('outOfStock').on('value', (snapshot) => {
     const outOfStockData = snapshot.val() || {};
-    let huboCambio = false;
 
+    // Sincronizamos la propiedad isOutOfStock de cada producto
     products.forEach(product => {
+        // Usamos la clave/id del producto
         const key = product.id || product.clave;
-        const nuevoEstado = Boolean(outOfStockData[key]);
         
-        // Solo marcamos cambio si el estado realmente es distinto al actual
-        if (product.isOutOfStock !== nuevoEstado) {
-            product.isOutOfStock = nuevoEstado;
-            huboCambio = true;
-        }
+        // Actualizamos la variable EXACTA que usa tu HTML
+        product.isOutOfStock = !!outOfStockData[key];
     });
 
-    // Solo volvemos a pintar los productos si hubo algún cambio de estado
-    if (huboCambio || !window.productosPintados) {
-        window.productosPintados = true;
-        renderProducts();
-    }
+    // Volvemos a pintar la interfaz
+    renderProducts();
 });
