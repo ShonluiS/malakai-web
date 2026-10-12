@@ -1474,21 +1474,6 @@ const rawProducts = [
     "Vincular (Costo / Precio)": ""
   },
   {
-    "Clave": "CEPI-1022",
-    "Unidad": "PIEZA",
-    "Nombre": "CARDA 2PZ",
-    "Cantidad": 1,
-    "Costo": 0,
-    "Precio": 30,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :40:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 0,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
     "Clave": "720-012",
     "Unidad": "PIEZA",
     "Nombre": "CARDA BOTA PELO GDE",
@@ -7561,26 +7546,28 @@ document.addEventListener('keydown', (e) => {
 function toggleStock(productId) {
     // 1. Buscamos el producto en la lista local por id o clave
     const product = products.find(p => String(p.id) === String(productId) || String(p.clave) === String(productId));
-    
     if (!product) {
         console.error("No se encontró el producto con ID:", productId);
         return;
     }
 
-    // 2. Invertimos su estado actual
+    // 2. Usamos la clave real del objeto como identificador único en Firebase
+    const realKey = product.id || product.clave;
+
+    // 3. Invertimos su estado actual
     product.isOutOfStock = !product.isOutOfStock;
 
-    // 3. Volvemos a pintar los productos en pantalla DE INMEDIATO
+    // 4. Volvemos a pintar los productos en pantalla DE INMEDIATO
     renderProducts();
 
-    // 4. Guardamos el cambio en Firebase para sincronizar a los demás
-    database.ref('outOfStock/' + productId).set(product.isOutOfStock)
+    // 5. Guardamos el cambio en Firebase usando la clave unificada
+    database.ref('outOfStock/' + realKey).set(product.isOutOfStock)
         .then(() => {
-            console.log("Sincronizado en Firebase:", productId, product.isOutOfStock);
+            console.log("Sincronizado en Firebase:", realKey, product.isOutOfStock);
         })
         .catch((error) => {
             console.error("Error al guardar en Firebase:", error);
-            // Si Firebase falla por permisos, revertimos el cambio en pantalla
+            // Si Firebase falla, revertimos el cambio en pantalla
             product.isOutOfStock = !product.isOutOfStock;
             renderProducts();
         });
@@ -7641,13 +7628,12 @@ database.ref('outOfStock').on('value', (snapshot) => {
 
     // Sincronizamos la propiedad isOutOfStock de cada producto
     products.forEach(product => {
-        // Usamos la clave/id del producto
         const key = product.id || product.clave;
-        
-        // Actualizamos la variable EXACTA que usa tu HTML
-        product.isOutOfStock = !!outOfStockData[key];
+        if (outOfStockData[key] !== undefined) {
+            product.isOutOfStock = Boolean(outOfStockData[key]);
+        }
     });
 
-    // Volvemos a pintar la interfaz
+    // Volvemos a pintar la interfaz para que se deshabiliten los botones y se opaquen las tarjetas
     renderProducts();
 });
