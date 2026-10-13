@@ -7629,14 +7629,11 @@ document.addEventListener("DOMContentLoaded", function() {
 database.ref('outOfStock').on('value', (snapshot) => {
     const outOfStockData = snapshot.val() || {};
 
-    // Sincronizamos la propiedad isOutOfStock de cada producto
-    products.forEach(product => {
-        const key = product.id || product.clave;
-        if (outOfStockData[key] !== undefined) {
-            product.isOutOfStock = Boolean(outOfStockData[key]);
-        }
-    });
+    // Llenamos la lista que usa renderProducts()
+    outOfStockIds.length = 0;
+    outOfStockIds.push(...Object.keys(outOfStockData).filter(k => outOfStockData[k] === true));
+    localStorage.setItem('outOfStockProducts', JSON.stringify(outOfStockIds));
 
-    // Volvemos a pintar la interfaz para que se deshabiliten los botones y se opaquen las tarjetas
+    // Repintamos para deshabilitar botones y opacar tarjetas
     renderProducts();
 });
