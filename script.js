@@ -996,7 +996,7 @@ const rawProducts = [
   {
     "Clave": 3545,
     "Unidad": "PIEZA",
-    "Nombre": "CADENA CASTIGO 2",
+    "Nombre": "CADENA CASTIGO 2MM",
     "Cantidad": 1,
     "Costo": 6,
     "Precio": 8.5,
@@ -1011,7 +1011,7 @@ const rawProducts = [
   {
     "Clave": "CAST-2.5",
     "Unidad": "PIEZA",
-    "Nombre": "CADENA CASTIGO 2.5",
+    "Nombre": "CADENA CASTIGO 2.5MM",
     "Cantidad": 0,
     "Costo": 1,
     "Precio": 10,
@@ -1026,7 +1026,7 @@ const rawProducts = [
   {
     "Clave": 3546,
     "Unidad": "PIEZA",
-    "Nombre": "CADENA CASTIGO 3",
+    "Nombre": "CADENA CASTIGO 3MM",
     "Cantidad": 0,
     "Costo": 7,
     "Precio": 11,
@@ -1041,7 +1041,7 @@ const rawProducts = [
   {
     "Clave": "CAST-3.5",
     "Unidad": "PIEZA",
-    "Nombre": "CADENA CASTIGO 3.5",
+    "Nombre": "CADENA CASTIGO 3.5MM",
     "Cantidad": 0,
     "Costo": 1,
     "Precio": 15,
@@ -1056,7 +1056,7 @@ const rawProducts = [
   {
     "Clave": 3547,
     "Unidad": "PIEZA",
-    "Nombre": "CADENA CASTIGO 4",
+    "Nombre": "CADENA CASTIGO 4MM",
     "Cantidad": 0,
     "Costo": 12.5,
     "Precio": 18,
@@ -1071,7 +1071,7 @@ const rawProducts = [
   {
     "Clave": 3548,
     "Unidad": "PIEZA",
-    "Nombre": "CADENA CASTIGO 5",
+    "Nombre": "CADENA CASTIGO 5MM",
     "Cantidad": 0,
     "Costo": 19,
     "Precio": 30,
@@ -1101,7 +1101,7 @@ const rawProducts = [
   {
     "Clave": 4367,
     "Unidad": "PIEZA",
-    "Nombre": "CADENA PASEO 2",
+    "Nombre": "CADENA PASEO 2MM",
     "Cantidad": 0,
     "Costo": 10,
     "Precio": 15,
@@ -1116,7 +1116,7 @@ const rawProducts = [
   {
     "Clave": 4368,
     "Unidad": "PIEZA",
-    "Nombre": "CADENA PASEO 2.5",
+    "Nombre": "CADENA PASEO 2.5MM",
     "Cantidad": 1,
     "Costo": 11.5,
     "Precio": 19,
@@ -1131,7 +1131,7 @@ const rawProducts = [
   {
     "Clave": 4252,
     "Unidad": "PIEZA",
-    "Nombre": "CADENA PASEO 3",
+    "Nombre": "CADENA PASEO 3MM",
     "Cantidad": 0,
     "Costo": 16,
     "Precio": 20,
@@ -1146,7 +1146,7 @@ const rawProducts = [
   {
     "Clave": 4253,
     "Unidad": "PIEZA",
-    "Nombre": "CADENA PASEO 3.5",
+    "Nombre": "CADENA PASEO 3.5MM",
     "Cantidad": 1,
     "Costo": 21,
     "Precio": 29,
@@ -1161,7 +1161,7 @@ const rawProducts = [
   {
     "Clave": 4400,
     "Unidad": "PIEZA",
-    "Nombre": "CADENA PASEO 4",
+    "Nombre": "CADENA PASEO 4MM",
     "Cantidad": 1,
     "Costo": 20.5,
     "Precio": 31,
@@ -1176,7 +1176,7 @@ const rawProducts = [
   {
     "Clave": 4402,
     "Unidad": "PIEZA",
-    "Nombre": "CADENA PASEO 4.5",
+    "Nombre": "CADENA PASEO 4.5MM",
     "Cantidad": 1,
     "Costo": 25,
     "Precio": 40,
@@ -1191,7 +1191,7 @@ const rawProducts = [
   {
     "Clave": 4401,
     "Unidad": "PIEZA",
-    "Nombre": "CADENA PASEO 5",
+    "Nombre": "CADENA PASEO 5MM",
     "Cantidad": 0,
     "Costo": 40,
     "Precio": 63,
@@ -3204,9 +3204,9 @@ const rawProducts = [
     "Nombre": "CORREA PLANA CH",
     "Cantidad": 0,
     "Costo": 1,
-    "Precio": 30,
+    "Precio": 50,
     "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :50:+",
+    "Precios Adicionales": "MENUDEO :70:+",
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 1,
@@ -7252,9 +7252,9 @@ function setupEvents() {
     }
 }
 
-// MOSTRAR Y FILTRAR PRODUCTOS
 function renderProducts() {
     if (!productsContainer) return;
+    const scrollY = window.scrollY; // NUEVO
     productsContainer.innerHTML = '';
 
     const filtered = products.filter(product => {
@@ -7275,35 +7275,37 @@ function renderProducts() {
     if (noResultsMessage) noResultsMessage.style.display = 'none';
 
     filtered.forEach(product => {
-      const isOutOfStock = outOfStockIds.includes(product.id);
-const card = document.createElement('article');
-card.classList.add('product-card');
+        const isOutOfStock = outOfStockIds.includes(product.id);
+        const card = document.createElement('article');
+        card.classList.add('product-card');
 
-card.innerHTML = `
-    <div class="product-image" style="position: relative; ${isOutOfStock ? 'opacity: 0.4; filter: grayscale(100%);' : ''}">
-        <img src="${product.image}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='img/logo.png';" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
-        ${isOutOfStock ? '<span style="position: absolute; top: 10px; left: 10px; background: #d32f2f; color: #fff; font-weight: bold; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem;">AGOTADO</span>' : ''}
-    </div>
-    <div class="product-info">
-        <span style="font-size:0.75rem; color:#888;">Clave: ${product.id}</span>
-        <h3>${product.name}</h3>
-        <p class="price">$${product.price.toFixed(2)} MXN ${isWholesaleActive ? '<span style="font-size: 0.75rem; color: #2e7d32; font-weight: bold; margin-left: 4px;">(Mayoreo)</span>' : ''}</p>
-        
-        <button class="add-to-cart-btn" ${isOutOfStock ? 'disabled style="background: #ccc; cursor: not-allowed;"' : `onclick="addToCart('${product.id}')"`}>
-            ${isOutOfStock ? 'Agotado' : 'Agregar al carrito'}
-        </button>
-
-        ${isAdmin ? `
-            <div style="margin-top: 10px; background: #fff3cd; padding: 6px; border-radius: 4px; border: 1px solid #ffeeba; text-align: center;">
-                <label style="font-size: 0.8rem; font-weight: bold; cursor: pointer; color: #856404;">
-                    <input type="checkbox" ${isOutOfStock ? 'checked' : ''} onchange="toggleStock('${product.id}')"> Ocultar / Marcar Agotado
-                </label>
+        card.innerHTML = `
+            <div class="product-image" style="position: relative; ${isOutOfStock ? 'opacity: 0.4; filter: grayscale(100%);' : ''}">
+                <img src="${product.image}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='img/logo.png';" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
+                ${isOutOfStock ? '<span style="position: absolute; top: 10px; left: 10px; background: #d32f2f; color: #fff; font-weight: bold; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem;">AGOTADO</span>' : ''}
             </div>
-        ` : ''}
-    </div>
-`;
+            <div class="product-info">
+                <span style="font-size:0.75rem; color:#888;">Clave: ${product.id}</span>
+                <h3>${product.name}</h3>
+                <p class="price">$${product.price.toFixed(2)} MXN ${isWholesaleActive ? '<span style="font-size: 0.75rem; color: #2e7d32; font-weight: bold; margin-left: 4px;">(Mayoreo)</span>' : ''}</p>
+                
+                <button class="add-to-cart-btn" ${isOutOfStock ? 'disabled style="background: #ccc; cursor: not-allowed;"' : `onclick="addToCart('${product.id}')"`}>
+                    ${isOutOfStock ? 'Agotado' : 'Agregar al carrito'}
+                </button>
+
+                ${isAdmin ? `
+                    <div style="margin-top: 10px; background: #fff3cd; padding: 6px; border-radius: 4px; border: 1px solid #ffeeba; text-align: center;">
+                        <label style="font-size: 0.8rem; font-weight: bold; cursor: pointer; color: #856404;">
+                            <input type="checkbox" ${isOutOfStock ? 'checked' : ''} onchange="toggleStock('${product.id}')"> Ocultar / Marcar Agotado
+                        </label>
+                    </div>
+                ` : ''}
+            </div>
+        `;
         productsContainer.appendChild(card);
     });
+
+    window.scrollTo(0, scrollY); // NUEVO
 }
 
 // FUNCIONES DEL CARRITO Y WHATSAPP
@@ -7544,33 +7546,34 @@ document.addEventListener('keydown', (e) => {
 });
 
 function toggleStock(productId) {
-    // 1. Buscamos el producto en la lista local por id o clave
-    const product = products.find(p => String(p.id) === String(productId) || String(p.clave) === String(productId));
+    const product = products.find(p => String(p.id) === String(productId));
     if (!product) {
         console.error("No se encontró el producto con ID:", productId);
         return;
     }
 
-    // 2. Usamos la clave real del objeto como identificador único en Firebase
-    const realKey = product.id || product.clave;
+    const key = product.id;
+    const wasOut = outOfStockIds.includes(key);
 
-    // 3. Invertimos su estado actual
-    product.isOutOfStock = !product.isOutOfStock;
+    const setLocal = (out) => {
+        const idx = outOfStockIds.indexOf(key);
+        if (out && idx === -1) outOfStockIds.push(key);
+        if (!out && idx > -1) outOfStockIds.splice(idx, 1);
+    };
 
-    // 4. Volvemos a pintar los productos en pantalla DE INMEDIATO
+    setLocal(!wasOut);
     renderProducts();
 
-    // 5. Guardamos el cambio en Firebase usando la clave unificada
-    database.ref('outOfStock/' + realKey).set(product.isOutOfStock)
-        .then(() => {
-            console.log("Sincronizado en Firebase:", realKey, product.isOutOfStock);
-        })
-        .catch((error) => {
-            console.error("Error al guardar en Firebase:", error);
-            // Si Firebase falla, revertimos el cambio en pantalla
-            product.isOutOfStock = !product.isOutOfStock;
-            renderProducts();
-        });
+    const ref = database.ref('outOfStock/' + key);
+    const op = wasOut ? ref.remove() : ref.set(true);
+
+    op.then(() => {
+        console.log("Sincronizado en Firebase:", key, !wasOut);
+    }).catch((error) => {
+        console.error("Error al guardar en Firebase:", error);
+        setLocal(wasOut);
+        renderProducts();
+    });
 }
 // --- LÓGICA DE DESLIZAMIENTO CON PUNTITOS INDICADORES ---
 document.addEventListener("DOMContentLoaded", function() {
