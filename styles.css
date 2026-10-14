@@ -533,3 +533,12 @@ nav a:hover::after {
         aspect-ratio: 16 / 9; /* Formato panorámico ideal para celulares */
     }
 }
+
+.qty-input {
+    width: 56px;
+    text-align: center;
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}

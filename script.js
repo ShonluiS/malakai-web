@@ -546,7 +546,7 @@ const rawProducts = [
   {
     "Clave": "PEBO-2",
     "Unidad": "PIEZA",
-    "Nombre": "BORIS #2",
+    "Nombre": "PECHERA PIEL #2",
     "Cantidad": 1,
     "Costo": 42,
     "Precio": 60,
@@ -561,7 +561,7 @@ const rawProducts = [
   {
     "Clave": "PEBO-3",
     "Unidad": "PIEZA",
-    "Nombre": "BORIS #3",
+    "Nombre": "PECHERA PIEL #3",
     "Cantidad": 1,
     "Costo": 46,
     "Precio": 65,
@@ -576,7 +576,7 @@ const rawProducts = [
   {
     "Clave": "PEBO-4",
     "Unidad": "PIEZA",
-    "Nombre": "BORIS #4",
+    "Nombre": "PECHERA PIEL #4",
     "Cantidad": 1,
     "Costo": 62,
     "Precio": 85,
@@ -591,7 +591,7 @@ const rawProducts = [
   {
     "Clave": "PEBO-5",
     "Unidad": "PIEZA",
-    "Nombre": "BORIS #5",
+    "Nombre": "PECHERA PIEL #5",
     "Cantidad": 1,
     "Costo": 69,
     "Precio": 93,
@@ -606,7 +606,7 @@ const rawProducts = [
   {
     "Clave": "PEBO-6",
     "Unidad": "PIEZA",
-    "Nombre": "BORIS #6",
+    "Nombre": "PECHERA PIEL #6",
     "Cantidad": 0,
     "Costo": 72,
     "Precio": 98,
@@ -966,7 +966,7 @@ const rawProducts = [
   {
     "Clave": "CACHE",
     "Unidad": "PIEZA",
-    "Nombre": "CACHETE",
+    "Nombre": "CACHETE 1KG",
     "Cantidad": 0,
     "Costo": 80,
     "Precio": 140,
@@ -1716,7 +1716,7 @@ const rawProducts = [
   {
     "Clave": "CAR-1",
     "Unidad": "PIEZA",
-    "Nombre": "CARNAZA",
+    "Nombre": "CARNAZA 1KG",
     "Cantidad": 0,
     "Costo": 0,
     "Precio": 160,
@@ -1731,7 +1731,7 @@ const rawProducts = [
   {
     "Clave": "CARNA-M",
     "Unidad": "PIEZA",
-    "Nombre": "CARNAZA MINI",
+    "Nombre": "CARNAZA MINI 1KG",
     "Cantidad": 0,
     "Costo": 140,
     "Precio": 220,
@@ -2149,7 +2149,7 @@ const rawProducts = [
     "Vincular (Costo / Precio)": ""
   },
   {
-    "Clave": "COA-3/4",
+    "Clave": "COA-3,4",
     "Unidad": "PIEZA",
     "Nombre": "COLLAR AJUSTABLE 3/4",
     "Cantidad": 1,
@@ -2265,21 +2265,6 @@ const rawProducts = [
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 0,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "ESTAM-1",
-    "Unidad": "PIEZA",
-    "Nombre": "COLLAR ESTAMPADO 1",
-    "Cantidad": 0,
-    "Costo": 1,
-    "Precio": 65,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 1,
     "": "",
     "Vincular (Costo / Precio)": ""
   },
@@ -2625,21 +2610,6 @@ const rawProducts = [
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 13,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "OFER",
-    "Unidad": "PIEZA",
-    "Nombre": "COLLAR OFERTA",
-    "Cantidad": 1,
-    "Costo": 0,
-    "Precio": 15,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 0,
     "": "",
     "Vincular (Costo / Precio)": ""
   },
@@ -3075,21 +3045,6 @@ const rawProducts = [
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 7,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "COR-GRA",
-    "Unidad": "PIEZA",
-    "Nombre": "CORREA GRAPA",
-    "Cantidad": 0,
-    "Costo": 28,
-    "Precio": 35,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :50:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 28,
     "": "",
     "Vincular (Costo / Precio)": ""
   },
@@ -4446,7 +4401,7 @@ const rawProducts = [
   {
     "Clave": "PAT",
     "Unidad": "PIEZA",
-    "Nombre": "PATA",
+    "Nombre": "PATA 1KG",
     "Cantidad": 0,
     "Costo": 170,
     "Precio": 250,
@@ -5196,7 +5151,7 @@ const rawProducts = [
   {
     "Clave": "PE-ZU",
     "Unidad": "KG",
-    "Nombre": "PEZUÑA",
+    "Nombre": "PEZUÑA 1KG",
     "Cantidad": 0,
     "Costo": 75,
     "Precio": 150,
@@ -5211,7 +5166,7 @@ const rawProducts = [
   {
     "Clave": "CAR-PZ",
     "Unidad": "KG",
-    "Nombre": "PEZUÑA RELLENA",
+    "Nombre": "PEZUÑA RELLENA 1KG",
     "Cantidad": 0,
     "Costo": 100,
     "Precio": 200,
@@ -7132,6 +7087,9 @@ function detectCategory(nombre) {
         name.includes('oreja') || name.includes('cachete') || name.includes('stick') || name.includes('stik')
     ) return 'comestibles';
 
+     // Ofertas
+    if (name.includes('OFERTA') || name.includes('Oferta')) return 'ofertas';
+
     return 'accesorios'; // Si no coincide con ninguna anterior, se va a accesorios
 }
 
@@ -7213,6 +7171,7 @@ function generateDynamicCategories() {
         "transportadoras",
         "comederos y platos",
         "comestibles",
+        "ofertas",
         "accesorios"
     ];
 
@@ -7359,6 +7318,28 @@ function updateQuantity(id, change) {
     saveCartToStorage();
 }
 
+function setQuantity(id, value) {
+    const item = cart.find(item => item.id === id);
+    if (!item) return;
+
+    const qty = parseInt(value, 10);
+
+    // Si escribieron algo inválido, se regresa a la cantidad anterior
+    if (isNaN(qty) || qty < 0) {
+        updateCartUI();
+        return;
+    }
+
+    if (qty === 0) {
+        cart = cart.filter(i => i.id !== id);
+    } else {
+        item.quantity = Math.min(qty, 9999);
+    }
+
+    updateCartUI();
+    saveCartToStorage();
+}
+
 function saveCartToStorage() {
     localStorage.setItem('malakai_cart', JSON.stringify(cart));
 }
@@ -7386,7 +7367,7 @@ function updateCartUI() {
                 </div>
                 <div class="cart-item-controls">
                     <button class="qty-btn" onclick="updateQuantity('${item.id}', -1)">-</button>
-                    <span>${item.quantity}</span>
+                    <input type="number" class="qty-input" min="0" max="9999" value="${item.quantity}" inputmode="numeric" onfocus="this.select()" onchange="setQuantity('${item.id}', this.value)">
                     <button class="qty-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
                 </div>
             `;
