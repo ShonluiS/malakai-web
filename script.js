@@ -2269,7 +2269,7 @@ const rawProducts = [
     "Vincular (Costo / Precio)": ""
   },
   {
-    "Clave": "COEA-1/2",
+    "Clave": "COEA-1,2",
     "Unidad": "PIEZA",
     "Nombre": "COLLAR ESTAMPADO 1/2",
     "Cantidad": 1,
@@ -2610,6 +2610,21 @@ const rawProducts = [
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 13,
+    "": "",
+    "Vincular (Costo / Precio)": ""
+  },
+  {
+    "Clave": "CO-FL",
+    "Unidad": "PIEZA",
+    "Nombre": "COLLAR FLOR",
+    "Cantidad": 1,
+    "Costo": 12,
+    "Precio": 16,
+    "Cantidad Mínima": 0,
+    "Precios Adicionales": "MENUDEO :30:+",
+    "Información Adicional": "",
+    "Categoría": "",
+    "Costo Promedio": 12,
     "": "",
     "Vincular (Costo / Precio)": ""
   },
@@ -3083,10 +3098,10 @@ const rawProducts = [
     "Unidad": "PIEZA",
     "Nombre": "CORREA NYLON",
     "Cantidad": 0,
-    "Costo": 68,
-    "Precio": 85,
+    "Costo": 75,
+    "Precio": 95,
     "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :100:+",
+    "Precios Adicionales": "MENUDEO :140:+",
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 68,
@@ -3105,21 +3120,6 @@ const rawProducts = [
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 28,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "CON-L",
-    "Unidad": "PIEZA",
-    "Nombre": "CORREA NYLON LARGA",
-    "Cantidad": 0,
-    "Costo": 75,
-    "Precio": 95,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :140:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 75,
     "": "",
     "Vincular (Costo / Precio)": ""
   },
@@ -7463,10 +7463,20 @@ function openProductModal(productId) {
     document.getElementById('modal-img').src = product.image;
     document.getElementById('modal-title').textContent = product.name;
     document.getElementById('modal-category').textContent = `Categoría: ${product.category}`;
-    
+
     // Muestra el precio dinámico (Menudeo o Mayoreo)
     const priceText = `$${product.price.toFixed(2)} MXN ${isWholesaleActive ? '(Mayoreo)' : ''}`;
     document.getElementById('modal-price').textContent = priceText;
+
+    // Estado del botón según si está agotado
+    const addBtn = document.getElementById('modal-add-btn');
+    if (addBtn) {
+        const isOutOfStock = outOfStockIds.includes(product.id);
+        addBtn.disabled = isOutOfStock;
+        addBtn.textContent = isOutOfStock ? 'Agotado' : 'Agregar al carrito 🛒';
+        addBtn.style.background = isOutOfStock ? '#ccc' : '#222';
+        addBtn.style.cursor = isOutOfStock ? 'not-allowed' : 'pointer';
+    }
 
     // Muestra la ventana emergente
     const modal = document.getElementById('product-modal');
@@ -7496,7 +7506,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (addBtn) {
         addBtn.addEventListener('click', () => {
             if (currentModalProductId) {
-                addToCart(currentModalProductId); // Utiliza tu función existente del carrito
+                addToCart(currentModalProductId);
                 modal.style.display = 'none';
             }
         });
