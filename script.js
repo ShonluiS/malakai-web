@@ -2689,7 +2689,7 @@ const rawProducts = [
     "Vincular (Costo / Precio)": ""
   },
   {
-    "Clave": "PICO#4",
+    "Clave": "PICO-4",
     "Unidad": "PIEZA",
     "Nombre": "COLLAR PICO #4",
     "Cantidad": 0,
@@ -4999,21 +4999,6 @@ const rawProducts = [
     "Vincular (Costo / Precio)": ""
   },
   {
-    "Clave": "PLAT-1012",
-    "Unidad": "PIEZA",
-    "Nombre": "PLATO GARRA",
-    "Cantidad": 1,
-    "Costo": 21.82,
-    "Precio": 30,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :40:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 21.82,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
     "Clave": "PLAT-1037",
     "Unidad": "PIEZA",
     "Nombre": "PLATO GATO",
@@ -7233,8 +7218,8 @@ function openProductModal(productId) {
     if (addBtn) {
         const isOutOfStock = outOfStockIds.includes(product.id);
         addBtn.disabled = isOutOfStock;
-        addBtn.textContent = isOutOfStock ? 'Agotado' : 'Agregar al carrito 🛒';
-        addBtn.style.background = isOutOfStock ? '#ccc' : '#222';
+        addBtn.textContent = isOutOfStock ? 'Agotado' : 'Agregar al carrito';
+        addBtn.style.background = isOutOfStock ? '#ccc' : '';
         addBtn.style.cursor = isOutOfStock ? 'not-allowed' : 'pointer';
     }
 

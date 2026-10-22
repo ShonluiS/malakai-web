@@ -542,3 +542,8 @@ nav a:hover::after {
     border-radius: 6px;
     font-size: 1rem;
 }
+
+#modal-add-btn {
+    background: #006adb;
+    color: #fff;
+}
