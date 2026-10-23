@@ -532,6 +532,16 @@ nav a:hover::after {
         max-width: 100% !important; /* La foto abarca de lado a lado en el cel */
         aspect-ratio: 16 / 9; /* Formato panorámico ideal para celulares */
     }
+
+    /* FOOTER EN CELULAR */
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .footer-column a {
+        padding: 6px 0;
+    }
 }
 
 .qty-input {
