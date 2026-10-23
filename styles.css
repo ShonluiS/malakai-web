@@ -574,6 +574,10 @@ nav a:hover::after {
         background: #006adb;
         color: #fff;
     }
+
+    header {
+    position: static;
+    }
 }
 
 .qty-input {
