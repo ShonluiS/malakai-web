@@ -4279,7 +4279,7 @@ const rawProducts = [
     "Vincular (Costo / Precio)": ""
   },
   {
-    "Clave": "PEA-3/4DOB",
+    "Clave": "PEA-34DOB",
     "Unidad": "PIEZA",
     "Nombre": "PECHERA AJUSTABLE 3/4",
     "Cantidad": 1,
@@ -4916,7 +4916,7 @@ const rawProducts = [
     "Costo": 75,
     "Precio": 150,
     "Cantidad Mínima": 0,
-    "Precios Adicionales": "PZA:30:+#MENUDEO :200:+",
+    "Precios Adicionales": "PZA:200:+#MENUDEO :200:+",
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 75,
@@ -4931,7 +4931,7 @@ const rawProducts = [
     "Costo": 100,
     "Precio": 200,
     "Cantidad Mínima": 0,
-    "Precios Adicionales": "PZA:40:+#MENUDEO :250:+",
+    "Precios Adicionales": "PZA:250:+#MENUDEO :250:+",
     "Información Adicional": "9 a 10pz - kg",
     "Categoría": "",
     "Costo Promedio": 100,
@@ -4995,21 +4995,6 @@ const rawProducts = [
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 0,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "PLAT-1037",
-    "Unidad": "PIEZA",
-    "Nombre": "PLATO GATO",
-    "Cantidad": 1,
-    "Costo": 12.76,
-    "Precio": 18,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :30:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 12.76,
     "": "",
     "Vincular (Costo / Precio)": ""
   },
@@ -5509,21 +5494,6 @@ const rawProducts = [
     "Vincular (Costo / Precio)": ""
   },
   {
-    "Clave": "OFER-2",
-    "Unidad": "PIEZA",
-    "Nombre": "ROPA OFERTA",
-    "Cantidad": 1,
-    "Costo": 0,
-    "Precio": 35,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :50:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 0,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
     "Clave": "HTGC019",
     "Unidad": "PIEZA",
     "Nombre": "SILBATO ENTRENADOR",
@@ -5535,21 +5505,6 @@ const rawProducts = [
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 19,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "DF1012",
-    "Unidad": "PIEZA",
-    "Nombre": "SILICON ECO",
-    "Cantidad": 0,
-    "Costo": 8.41,
-    "Precio": 15,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :25:+",
-    "Información Adicional": "MASTER 240pz",
-    "Categoría": "",
-    "Costo Promedio": 8.41,
     "": "",
     "Vincular (Costo / Precio)": ""
   },
@@ -5610,21 +5565,6 @@ const rawProducts = [
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 14,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "CARI-10",
-    "Unidad": "PIEZA",
-    "Nombre": "SUETER #10",
-    "Cantidad": 1,
-    "Costo": 85,
-    "Precio": 120,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :160:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 85,
     "": "",
     "Vincular (Costo / Precio)": ""
   },
@@ -5745,6 +5685,21 @@ const rawProducts = [
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 62,
+    "": "",
+    "Vincular (Costo / Precio)": ""
+  },
+  {
+    "Clave": "CARI-10",
+    "Unidad": "PIEZA",
+    "Nombre": "SUETER #10",
+    "Cantidad": 1,
+    "Costo": 85,
+    "Precio": 120,
+    "Cantidad Mínima": 0,
+    "Precios Adicionales": "MENUDEO :160:+",
+    "Información Adicional": "",
+    "Categoría": "",
+    "Costo Promedio": 85,
     "": "",
     "Vincular (Costo / Precio)": ""
   },
@@ -5959,171 +5914,6 @@ const rawProducts = [
     "Vincular (Costo / Precio)": ""
   },
   {
-    "Clave": "POLAR-0",
-    "Unidad": "PIEZA",
-    "Nombre": "SUETER POLAR #0",
-    "Cantidad": 1,
-    "Costo": 10,
-    "Precio": 14,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :30:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 10,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "POLAR-1",
-    "Unidad": "PIEZA",
-    "Nombre": "SUETER POLAR #1",
-    "Cantidad": 1,
-    "Costo": 12,
-    "Precio": 17,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :30:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 12,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "POLAR-10",
-    "Unidad": "PIEZA",
-    "Nombre": "SUETER POLAR #10",
-    "Cantidad": 1,
-    "Costo": 65,
-    "Precio": 95,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :150:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 65,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "POLAR-2",
-    "Unidad": "PIEZA",
-    "Nombre": "SUETER POLAR #2",
-    "Cantidad": 1,
-    "Costo": 13,
-    "Precio": 19,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :35:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 13,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "POLAR-3",
-    "Unidad": "PIEZA",
-    "Nombre": "SUETER POLAR #3",
-    "Cantidad": 1,
-    "Costo": 15,
-    "Precio": 22,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :40:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 15,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "POLAR-4",
-    "Unidad": "PIEZA",
-    "Nombre": "SUETER POLAR #4",
-    "Cantidad": 1,
-    "Costo": 17,
-    "Precio": 26,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "45:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 17,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "POLAR-5",
-    "Unidad": "PIEZA",
-    "Nombre": "SUETER POLAR #5",
-    "Cantidad": 1,
-    "Costo": 20,
-    "Precio": 30,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :50:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 20,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "POLAR-6",
-    "Unidad": "PIEZA",
-    "Nombre": "SUETER POLAR #6",
-    "Cantidad": 1,
-    "Costo": 24.5,
-    "Precio": 38,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :60:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 24.5,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "POLAR-7",
-    "Unidad": "PIEZA",
-    "Nombre": "SUETER POLAR #7",
-    "Cantidad": 1,
-    "Costo": 35,
-    "Precio": 50,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :80:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 35,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "POLAR-8",
-    "Unidad": "PIEZA",
-    "Nombre": "SUETER POLAR #8",
-    "Cantidad": 1,
-    "Costo": 50,
-    "Precio": 70,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :100:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 50,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "POLAR-9",
-    "Unidad": "PIEZA",
-    "Nombre": "SUETER POLAR #9",
-    "Cantidad": 1,
-    "Costo": 58,
-    "Precio": 82,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :120:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 58,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
     "Clave": "TAP-E",
     "Unidad": "PIEZA",
     "Nombre": "TAPETE ENTRENADOR",
@@ -6192,21 +5982,6 @@ const rawProducts = [
     "Precio": 22,
     "Cantidad Mínima": 0,
     "Precios Adicionales": "MENUDEO :35:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 0,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "TIJE-1003",
-    "Unidad": "PIEZA",
-    "Nombre": "TIJERA LIMA",
-    "Cantidad": 1,
-    "Costo": 0,
-    "Precio": 32,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "",
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 0,
@@ -6285,21 +6060,6 @@ const rawProducts = [
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 1455,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "TRAQ",
-    "Unidad": "PIEZA",
-    "Nombre": "TRAQUEA",
-    "Cantidad": 0,
-    "Costo": 200,
-    "Precio": 350,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "Pz:45:+#MEDIO:180:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 200,
     "": "",
     "Vincular (Costo / Precio)": ""
   },
@@ -6805,7 +6565,7 @@ function detectCategory(nombre) {
     if (name.includes('correa') || name.includes('cadena')) return 'correas';
 
     // Juguetes (sonajas, balón, resorte)
-    if (name.includes('juguete') || name.includes('sonaja') || name.includes('balon') || name.includes('balón') || name.includes('resorte')) return 'juguetes';
+    if (name.includes('juguete') || name.includes('sonaja') || name.includes('balon') || name.includes('balón') || name.includes('pollo') || name.includes('resorte')) return 'juguetes';
 
     // Areneros y camas
     if (name.includes('arenero') || name.includes('cama')) return 'areneros y camas';
@@ -6828,7 +6588,7 @@ function detectCategory(nombre) {
 
     // Comestibles (pata de pollo, carnaza, cola de res, oreja, cachete, sticks)
     if (
-        name.includes('pata') || name.includes('carnaza') || name.includes('cola') || 
+        name.includes('pata') || name.includes('carnaza') || name.includes('cola') || name.includes('pezuña') || 
         name.includes('oreja') || name.includes('cachete') || name.includes('stick') || name.includes('stik')
     ) return 'comestibles';
 
