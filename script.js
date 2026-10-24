@@ -2284,7 +2284,7 @@ const rawProducts = [
     "Vincular (Costo / Precio)": ""
   },
   {
-    "Clave": "COEA-3/4",
+    "Clave": "COEA-34",
     "Unidad": "PIEZA",
     "Nombre": "COLLAR ESTAMPADO 3/4",
     "Cantidad": 1,
