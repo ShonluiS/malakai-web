@@ -35,11 +35,41 @@ header {
     object-fit: contain;
 }
 
+nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 nav a {
-    margin: 0 15px;
+    margin: 0;
+    padding: 10px 22px;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2d3748;
+    background: rgba(255, 255, 255, 0.65);
+    border-radius: 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
     text-decoration: none;
-    color: #4a5568;
-    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+nav a:active {
+    background: #006adb;
+    color: #fff;
+}
+
+nav a.active {
+    background: #006adb;
+    color: #fff;
+}
+
+@media (hover: hover) {
+    nav a:hover {
+        background: #006adb;
+        color: #fff;
+    }
 }
 
 .cart-btn {
@@ -411,34 +441,6 @@ footer {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* EFECTO ELEGANTE EN EL MENÚ DE NAVEGACIÓN */
-nav a {
-    position: relative;
-    text-decoration: none;
-    color: #333; /* Ajusta según el color de tu texto */
-    padding-bottom: 4px;
-    transition: color 0.3s ease;
-}
-
-nav a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #000; /* Color de la línea (puedes poner el de tu marca) */
-    transition: width 0.3s ease-in-out;
-}
-
-nav a:hover {
-    color: #000;
-}
-
-nav a:hover::after {
-    width: 100%;
-}
-
 /* ESTILO PARA EL ICONO DEL BUSCADOR */
 .search-box {
     position: relative;
@@ -556,23 +558,9 @@ nav a:hover::after {
         gap: 10px;
     }
 
-    nav a {
+        nav a {
         flex: 1;
-        margin: 0;
         padding: 10px 0;
-        text-align: center;
-        font-size: 0.95rem;
-        font-weight: 600;
-        color: #2d3748;
-        background: rgba(255, 255, 255, 0.65);
-        border-radius: 20px;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-        transition: background 0.2s, color 0.2s;
-    }
-
-    nav a:active {
-        background: #006adb;
-        color: #fff;
     }
 }
 

@@ -4534,21 +4534,6 @@ const rawProducts = [
     "Vincular (Costo / Precio)": ""
   },
   {
-    "Clave": "PEP-G",
-    "Unidad": "PIEZA",
-    "Nombre": "PECHERA PICO GDE",
-    "Cantidad": 1,
-    "Costo": 0,
-    "Precio": 200,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :350:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 0,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
     "Clave": "PEP-M",
     "Unidad": "PIEZA",
     "Nombre": "PECHERA PICO M",
@@ -4557,6 +4542,21 @@ const rawProducts = [
     "Precio": 170,
     "Cantidad Mínima": 0,
     "Precios Adicionales": "MENUDEO :300:+",
+    "Información Adicional": "",
+    "Categoría": "",
+    "Costo Promedio": 0,
+    "": "",
+    "Vincular (Costo / Precio)": ""
+  },
+  {
+    "Clave": "PEP-G",
+    "Unidad": "PIEZA",
+    "Nombre": "PECHERA PICO GDE",
+    "Cantidad": 1,
+    "Costo": 0,
+    "Precio": 200,
+    "Cantidad Mínima": 0,
+    "Precios Adicionales": "MENUDEO :350:+",
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 0,
@@ -7118,3 +7118,48 @@ database.ref('outOfStock').on('value', (snapshot) => {
     // Repintamos para deshabilitar botones y opacar tarjetas
     renderProducts();
 });
+
+// Marca en azul el botón del menú según la sección visible
+function updateActiveNav() {
+    const links = Array.from(document.querySelectorAll('nav a[href^="#"]'));
+    const header = document.querySelector('header');
+    const offset = (header ? header.offsetHeight : 0) + 20;
+
+    let currentHref = null;
+
+    links.forEach(link => {
+        const section = document.getElementById(link.getAttribute('href').slice(1));
+        if (section && section.getBoundingClientRect().top <= offset) {
+            currentHref = link.getAttribute('href');
+        }
+    });
+
+    // Si llegaste al final de la página, se marca el último enlace
+    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 5;
+    if (atBottom && links.length) {
+        currentHref = links[links.length - 1].getAttribute('href');
+    }
+
+    // Si aún no pasas ninguna sección, se marca el primero
+    if (!currentHref && links.length) {
+        currentHref = links[0].getAttribute('href');
+    }
+
+    links.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === currentHref);
+    });
+}
+
+let navTicking = false;
+window.addEventListener('scroll', () => {
+    if (!navTicking) {
+        requestAnimationFrame(() => {
+            updateActiveNav();
+            navTicking = false;
+        });
+        navTicking = true;
+    }
+}, { passive: true });
+
+window.addEventListener('resize', updateActiveNav);
+window.addEventListener('load', updateActiveNav);
