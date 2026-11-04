@@ -577,3 +577,16 @@ footer {
     background: #006adb;
     color: #fff;
 }
+
+.products-notice {
+    max-width: 600px;
+    margin: -20px auto 30px;
+    padding: 10px 16px;
+    text-align: start;
+    font-size: 0.9rem;
+    color: #4a5568;
+    background: #fefefe;
+    border: 1px solid #006eff;
+    border-left: 4px solid #006adb;
+    border-radius: 8px;
+}
