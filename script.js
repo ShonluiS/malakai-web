@@ -1759,6 +1759,21 @@ const rawProducts = [
     "Vincular (Costo / Precio)": ""
   },
   {
+    "Clave": "CASA-FIBMED",
+    "Unidad": "PIEZA",
+    "Nombre": "CASA M",
+    "Cantidad": 1,
+    "Costo": 760,
+    "Precio": 760,
+    "Cantidad Mínima": 0,
+    "Precios Adicionales": "MENUDEO :900:+",
+    "Información Adicional": "",
+    "Categoría": "",
+    "Costo Promedio": 640,
+    "": "",
+    "Vincular (Costo / Precio)": ""
+  },
+  {
     "Clave": "CASA-FIBGDE",
     "Unidad": "PIEZA",
     "Nombre": "CASA G",
@@ -1770,21 +1785,6 @@ const rawProducts = [
     "Información Adicional": "",
     "Categoría": "",
     "Costo Promedio": 800,
-    "": "",
-    "Vincular (Costo / Precio)": ""
-  },
-  {
-    "Clave": "CASA-FIBMED",
-    "Unidad": "PIEZA",
-    "Nombre": "CASA M",
-    "Cantidad": 1,
-    "Costo": 640,
-    "Precio": 760,
-    "Cantidad Mínima": 0,
-    "Precios Adicionales": "MENUDEO :900:+",
-    "Información Adicional": "",
-    "Categoría": "",
-    "Costo Promedio": 640,
     "": "",
     "Vincular (Costo / Precio)": ""
   },
